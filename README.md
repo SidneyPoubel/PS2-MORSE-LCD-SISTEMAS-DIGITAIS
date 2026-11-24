@@ -4,7 +4,7 @@ VHDL project for the **Xilinx Spartan-3AN** board (50 MHz clock). It reads keys 
 
 The text is limited to **5 characters**.
 
-## Demo
+## Demonstration
 
 <p align="center">
   <img src="lcd-morse-board.jpg" alt="Project running on the board: the LCD shows the typed text and its Morse translation" width="300">

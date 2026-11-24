@@ -1,0 +1,18 @@
+# Clock and reset
+NET "clk"      LOC = "E12"  | IOSTANDARD = LVCMOS33 ; # 50 MHz clock
+NET "rst"      LOC = "T13"  | IOSTANDARD = LVCMOS33 | PULLDOWN ; # Reset button (BTN_NORTH)
+
+# PS/2 keyboard (pull-ups: the PS/2 lines are open-collector)
+NET "ps2_clk"  LOC = "W12"  | IOSTANDARD = LVCMOS33 | PULLUP ;
+NET "ps2_data" LOC = "V11"  | IOSTANDARD = LVCMOS33 | PULLUP ;
+
+# LCD (HD44780)
+NET "lcd_rs"   LOC = "Y14"  | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "lcd_rw"   LOC = "W13"  | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+NET "lcd_e"    LOC = "AB15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ;
+
+# 4-bit data bus: lcd_data<3> = DB7 (MSB nibble bit) ... lcd_data<0> = DB4
+NET "lcd_data<0>" LOC = "Y13" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ; # DB4
+NET "lcd_data<1>" LOC = "AB18"| IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ; # DB5
+NET "lcd_data<2>" LOC = "AB17"| IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ; # DB6
+NET "lcd_data<3>" LOC = "Y15" | IOSTANDARD = LVCMOS33 | DRIVE = 4 | SLEW = SLOW ; # DB7

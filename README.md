@@ -4,12 +4,20 @@ VHDL project for the **Xilinx Spartan-3AN** board (50 MHz clock). It reads keys 
 
 The text is limited to **5 characters**.
 
+## Demo
+
+![Project running on the board: the LCD shows the typed text and its Morse translation](demo.jpg)
+
+Running on the board: the typed text is shown on the first line and its Morse translation on the second.
+
 ## Files
 
 | File | Description |
 |---|---|
 | `teclado_morse_lcd.vhd` | Main module (PS/2 receiver, translator, LCD controller) |
+| `teclado_morse_lcd.ucf` | Pin constraints (clock, reset, PS/2, LCD) |
 | `tb_teclado.vhd` | Testbench that emulates a PS/2 keyboard sending keys |
+| `demo.jpg` | Photo of the project running on the board |
 
 ## How it works
 
@@ -39,7 +47,23 @@ The Morse buffer has 16 positions, and all of them are shown on line 2.
 | `lcd_e` | out | LCD enable |
 | `lcd_data[3:0]` | out | 4-bit data bus (D7..D4) |
 
-Physical pins must be assigned in the constraints file (`.ucf`) according to your board and LCD wiring.
+### Pin assignments
+
+Defined in `teclado_morse_lcd.ucf` (all LVCMOS33):
+
+| Signal | Pin | Notes |
+|---|---|---|
+| `clk` | E12 | 50 MHz clock |
+| `rst` | T13 | Reset button (BTN_NORTH), pull-down |
+| `ps2_clk` | W12 | Pull-up |
+| `ps2_data` | V11 | Pull-up |
+| `lcd_rs` | Y14 | Drive 4 mA, slow slew |
+| `lcd_rw` | W13 | Drive 4 mA, slow slew |
+| `lcd_e` | AB15 | Drive 4 mA, slow slew |
+| `lcd_data[0]` | Y13 | LCD DB4 |
+| `lcd_data[1]` | AB18 | LCD DB5 |
+| `lcd_data[2]` | AB17 | LCD DB6 |
+| `lcd_data[3]` | Y15 | LCD DB7 |
 
 ## Supported keys
 
@@ -48,6 +72,15 @@ Physical pins must be assigned in the constraints file (`.ucf`) according to you
 - **Backspace** (deletes the last character)
 
 Any other key is ignored.
+
+## Building and running on the board
+
+1. Create a project for the Spartan-3AN device in Xilinx ISE.
+2. Add `teclado_morse_lcd.vhd` as the source and `teclado_morse_lcd.ucf` as the constraints file.
+3. Set `teclado_morse_lcd` as the top-level module, then synthesize, implement and generate the programming file.
+4. Program the board, connect a PS/2 keyboard and press the reset button.
+
+Before running on hardware, check the timing note in *Things to be aware of* below.
 
 ## Simulation
 

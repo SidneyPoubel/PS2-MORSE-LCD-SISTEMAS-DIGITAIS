@@ -6,7 +6,9 @@ The text is limited to **5 characters**.
 
 ## Demo
 
-![Project running on the board: the LCD shows the typed text and its Morse translation](demo.jpg)
+<p align="center">
+  <img src="lcd-morse-board.jpg" alt="Project running on the board: the LCD shows the typed text and its Morse translation" width="300">
+</p>
 
 Running on the board: the typed text is shown on the first line and its Morse translation on the second.
 
@@ -17,7 +19,7 @@ Running on the board: the typed text is shown on the first line and its Morse tr
 | `teclado_morse_lcd.vhd` | Main module (PS/2 receiver, translator, LCD controller) |
 | `teclado_morse_lcd.ucf` | Pin constraints (clock, reset, PS/2, LCD) |
 | `tb_teclado.vhd` | Testbench that emulates a PS/2 keyboard sending keys |
-| `demo.jpg` | Photo of the project running on the board |
+| `lcd-morse-board.jpg` | Photo of the project running on the board |
 
 ## How it works
 
